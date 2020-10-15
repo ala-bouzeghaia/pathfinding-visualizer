@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import './App.css';
 import Navbar from './components/navbar';
+import PathfindingVisualizer from './components/visualizer/visualizer';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
+        <PathfindingVisualizer />
       </Router>
     </div>
   );
