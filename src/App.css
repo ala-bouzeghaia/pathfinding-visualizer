@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  margin: 0;
+  padding: 10px 20px 10px 20px;
+  color: #2ca3c4;
+}
+
+.link-button:hover {
+  color: #1958a0;
+}
+.link-button:focus {
+  text-decoration: none;
+}
+
+.visualize-button {
+  background-color: #1958a0;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  margin: 0;
+  padding: 10px 20px 10px 20px;
+}
