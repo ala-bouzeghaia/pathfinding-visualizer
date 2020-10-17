@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import "./App.css";
 import Navbar from "./components/navbar";
-import PathfindingVisualizer from "./components/visualizer";
+import PathfindingVisualizer from "./components/pathvisualizer";
 
 function App() {
   return (
