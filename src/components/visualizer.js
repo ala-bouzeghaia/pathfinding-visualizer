@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Node from "../node/node";
-import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
+import Node from "./node/node";
+import { dijkstra, getNodesInShortestPathOrder } from "./algorithms/dijkstra";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -104,6 +104,7 @@ const PathfindingVisualizer = () => {
 
   return (
     <div className="grid">
+      <button onClick={visualizeDijkstra}>Animate</button>
       {grid.map((row, rowIdx) => {
         return (
           <div key={rowIdx} style={{ margin: -4 }}>
@@ -127,7 +128,6 @@ const PathfindingVisualizer = () => {
           </div>
         );
       })}
-      <button onClick={visualizeDijkstra}>Animate</button>
     </div>
   );
 };
