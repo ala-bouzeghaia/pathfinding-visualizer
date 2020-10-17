@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { dijkstraAlgo } from "../actions";
 
 const Navbar = () => {
+  //const algo = useSelector((state) => state.visualizeAlgo);
+  const dispatch = useDispatch();
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <Link to="/" className="navbar-brand">
@@ -43,7 +48,10 @@ const Navbar = () => {
           </li>
 
           <li className="nav-item">
-            <button className="visualize-button nav-link active">
+            <button
+              className="visualize-button nav-link active"
+              onClick={() => dispatch(dijkstraAlgo())}
+            >
               Visualize{" "}
             </button>
           </li>

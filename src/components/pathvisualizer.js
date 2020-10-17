@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Node from "./node/node";
 import { dijkstra, getNodesInShortestPathOrder } from "./algorithms/dijkstra";
+import { useSelector } from "react-redux";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -94,17 +95,20 @@ const PathfindingVisualizer = () => {
     }
   };
 
-  const visualizeDijkstra = () => {
-    const startNode = grid[START_NODE_ROW][START_NODE_COL];
-    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-    animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
-  };
+  const algo = useSelector((state) => state.visualizeAlgo);
 
+  const visualizeDijkstra = () => {
+    if (algo === "dijkstra") {
+      const startNode = grid[START_NODE_ROW][START_NODE_COL];
+      const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+      const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
+      const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+      animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    }
+  };
+  visualizeDijkstra();
   return (
     <div className="grid">
-      <button onClick={visualizeDijkstra}>Animate</button>
       {grid.map((row, rowIdx) => {
         return (
           <div key={rowIdx} style={{ margin: -4 }}>
