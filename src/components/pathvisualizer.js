@@ -78,7 +78,19 @@ const PathfindingVisualizer = () => {
     if (isClearBoardPressed) {
       setGrid(getInitialGrid());
       dispatch(clearedBoard());
-
+      const startNode = grid[START_NODE_ROW][START_NODE_COL];
+      const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+      const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
+      for (const node of visitedNodesInOrder) {
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node ";
+      }
+      document.getElementById(
+        `node-${START_NODE_ROW}-${START_NODE_COL}`
+      ).className = "node node-start";
+      document.getElementById(
+        `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+      ).className = "node node-finish";
       dispatch(noAlgo());
     }
   };
@@ -91,14 +103,14 @@ const PathfindingVisualizer = () => {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, 5 * i);
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-visited";
-      }, 10 * i);
+      }, 5 * i);
     }
   };
 
