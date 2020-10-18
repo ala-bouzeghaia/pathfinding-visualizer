@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Node from "./node/node";
 import { dijkstra, getNodesInShortestPathOrder } from "./algorithms/dijkstra";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearedBoard, noAlgo } from "../actions";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -69,6 +70,22 @@ const PathfindingVisualizer = () => {
     setGrid(initialGrid);
   }, []);
 
+  //-----------Clear Board-------------------------------------//
+  const dispatch = useDispatch();
+
+  const ClearBoardPressed = () => {
+    const isClearBoardPressed = useSelector((state) => state.clearBoard);
+    if (isClearBoardPressed) {
+      setGrid(getInitialGrid());
+      dispatch(clearedBoard());
+
+      dispatch(noAlgo());
+    }
+  };
+  ClearBoardPressed();
+
+  //-----------Visualize Pathfinding Algorithms----------------//
+
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
@@ -107,6 +124,7 @@ const PathfindingVisualizer = () => {
     }
   };
   visualizeDijkstra();
+
   return (
     <div className="grid">
       {grid.map((row, rowIdx) => {

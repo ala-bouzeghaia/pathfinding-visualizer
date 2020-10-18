@@ -4,6 +4,8 @@ const VisualizeAlgoReducer = (state = "", action) => {
       return "dijkstra";
     case "A_STAR":
       return "a_star";
+    case "NO_ALGO":
+      return "";
     default:
       return state;
   }
