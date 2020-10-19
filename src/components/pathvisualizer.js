@@ -76,7 +76,7 @@ const PathfindingVisualizer = () => {
   const ClearBoardPressed = () => {
     const isClearBoardPressed = useSelector((state) => state.clearBoard);
     if (isClearBoardPressed) {
-      setGrid(getInitialGrid());
+      //setGrid(getInitialGrid());
       dispatch(clearedBoard());
       const startNode = grid[START_NODE_ROW][START_NODE_COL];
       const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -103,14 +103,14 @@ const PathfindingVisualizer = () => {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           animateShortestPath(nodesInShortestPathOrder);
-        }, 5 * i);
+        }, 10 * i);
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-visited";
-      }, 5 * i);
+      }, 10 * i);
     }
   };
 
