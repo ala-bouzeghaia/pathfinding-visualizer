@@ -76,7 +76,7 @@ const PathfindingVisualizer = () => {
   const ClearBoardPressed = () => {
     const isClearBoardPressed = useSelector((state) => state.clearBoard);
     if (isClearBoardPressed) {
-      //setGrid(getInitialGrid());
+      setGrid(getInitialGrid());
       dispatch(clearedBoard());
       const startNode = grid[START_NODE_ROW][START_NODE_COL];
       const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -84,6 +84,7 @@ const PathfindingVisualizer = () => {
       for (const node of visitedNodesInOrder) {
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node ";
+        console.log("node", node);
       }
       document.getElementById(
         `node-${START_NODE_ROW}-${START_NODE_COL}`
