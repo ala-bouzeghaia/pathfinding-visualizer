@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Node from "./node/node";
 import { dijkstra, getNodesInShortestPathOrder } from "./algorithms/dijkstra";
 import { useSelector, useDispatch } from "react-redux";
-import { clearedBoard, noAlgo } from "../actions";
+import { clearedBoard } from "../actions/clearboard";
+import { noAlgo } from "../actions/visualizeAlgo";
+import { clearedPath } from "../actions/clearpath";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -70,32 +72,65 @@ const PathfindingVisualizer = () => {
     setGrid(initialGrid);
   }, []);
 
-  //-----------Clear Board-------------------------------------//
+  //-----------Clear Board Or Path-------------------------------------//
   const dispatch = useDispatch();
 
-  const ClearBoardPressed = () => {
+  const ClearPressed = () => {
     const isClearBoardPressed = useSelector((state) => state.clearBoard);
+    const isClearPathPressed = useSelector((state) => state.clearPath);
     if (isClearBoardPressed) {
       setGrid(getInitialGrid());
+      console.log("grid", grid);
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          //console.log("grid node", grid[row][col]);
+          document.getElementById(
+            `node-${grid[row][col].row}-${grid[row][col].col}`
+          ).className = "node ";
+        }
+      }
+      document.getElementById(
+        `node-${START_NODE_ROW}-${START_NODE_COL}`
+      ).className = "node node-start";
+
+      document.getElementById(
+        `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+      ).className = "node node-finish";
+      dispatch(noAlgo());
       dispatch(clearedBoard());
-      const startNode = grid[START_NODE_ROW][START_NODE_COL];
+      /* const startNode = grid[START_NODE_ROW][START_NODE_COL];
       const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
       const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
       for (const node of visitedNodesInOrder) {
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node ";
         console.log("node", node);
+      } */
+    }
+    if (isClearPathPressed) {
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          if (!grid[row][col].isWall) {
+            grid[row][col] = createNode(col, row);
+            document.getElementById(
+              `node-${grid[row][col].row}-${grid[row][col].col}`
+            ).className = "node ";
+          }
+        }
       }
       document.getElementById(
         `node-${START_NODE_ROW}-${START_NODE_COL}`
       ).className = "node node-start";
+
       document.getElementById(
         `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
       ).className = "node node-finish";
       dispatch(noAlgo());
+      dispatch(clearedPath());
     }
   };
-  ClearBoardPressed();
+
+  ClearPressed();
 
   //-----------Visualize Pathfinding Algorithms----------------//
 
