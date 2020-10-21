@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { dijkstraAlgo, clearBoard } from "../actions";
+import { dijkstraAlgo } from "../actions/visualizeAlgo";
+import { clearBoard } from "../actions/clearboard";
+import { clearPath } from "../actions/clearpath";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -65,7 +67,12 @@ const Navbar = () => {
           </li>
 
           <li className="nav-item">
-            <button className="link-button">Clear Path </button>
+            <button
+              className="link-button"
+              onClick={() => dispatch(clearPath())}
+            >
+              Clear Path{" "}
+            </button>
           </li>
         </ul>
       </div>
