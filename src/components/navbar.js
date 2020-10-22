@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { dijkstraAlgo } from "../actions/visualizeAlgo";
 import { clearBoard } from "../actions/clearboard";
 import { clearPath } from "../actions/clearpath";
+import { RandomMaze, RecursiveDivision } from "../actions/mazes";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,18 @@ const Navbar = () => {
               Mazes
             </button>
             <div className="dropdown-menu">
-              <button className="dropdown-item">Random Maze</button>
-              <button className="dropdown-item">Recursive Division</button>
+              <button
+                className="dropdown-item"
+                onClick={() => dispatch(RandomMaze())}
+              >
+                Random Maze
+              </button>
+              <button
+                className="dropdown-item"
+                onClick={() => dispatch(RecursiveDivision())}
+              >
+                Recursive Division
+              </button>
             </div>
           </li>
 
