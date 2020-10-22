@@ -168,26 +168,30 @@ const PathfindingVisualizer = () => {
   visualizeDijkstra();
 
   //--------------Generate Maze---------------------//
-
-  const maze = useSelector((state) => state.maze);
-  const visualizeRandomMaze = () => {
-    if (maze === "random") {
-      for (let row = 0; row < 20; row++) {
-        for (let col = 0; col < 50; col++) {
-          if (!grid[row][col].isStart && !grid[row][col].isFinish) {
-            grid[row][col] = createNode(col, row);
-            document.getElementById(
-              `node-${grid[row][col].row}-${grid[row][col].col}`
-            ).className = "node ";
-          }
+  const resetGrid = (grid) => {
+    for (let row = 0; row < 20; row++) {
+      for (let col = 0; col < 50; col++) {
+        if (!grid[row][col].isStart && !grid[row][col].isFinish) {
+          grid[row][col] = createNode(col, row);
+          document.getElementById(
+            `node-${grid[row][col].row}-${grid[row][col].col}`
+          ).className = "node ";
         }
       }
-      document.getElementById(
-        `node-${START_NODE_ROW}-${START_NODE_COL}`
-      ).className = "node node-start";
-      document.getElementById(
-        `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
-      ).className = "node node-finish";
+    }
+    document.getElementById(
+      `node-${START_NODE_ROW}-${START_NODE_COL}`
+    ).className = "node node-start";
+    document.getElementById(
+      `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+    ).className = "node node-finish";
+  };
+
+  const maze = useSelector((state) => state.maze);
+
+  const visualizeRandomMaze = () => {
+    if (maze === "random") {
+      resetGrid(grid);
 
       const randomGrid = randomMaze(grid);
       setGrid(randomGrid);
