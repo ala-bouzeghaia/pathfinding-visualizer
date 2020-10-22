@@ -42,9 +42,8 @@ const Navbar = () => {
               Mazes
             </button>
             <div className="dropdown-menu">
-              <button className="dropdown-item">Action</button>
-              <button className="dropdown-item">Another action</button>
-              <button className="dropdown-item">Something else here</button>
+              <button className="dropdown-item">Random Maze</button>
+              <button className="dropdown-item">Recursive Division</button>
             </div>
           </li>
 

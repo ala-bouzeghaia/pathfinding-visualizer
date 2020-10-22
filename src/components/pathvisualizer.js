@@ -98,14 +98,6 @@ const PathfindingVisualizer = () => {
       ).className = "node node-finish";
       dispatch(noAlgo());
       dispatch(clearedBoard());
-      /* const startNode = grid[START_NODE_ROW][START_NODE_COL];
-      const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-      const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-      for (const node of visitedNodesInOrder) {
-        document.getElementById(`node-${node.row}-${node.col}`).className =
-          "node ";
-        console.log("node", node);
-      } */
     }
     if (isClearPathPressed) {
       for (let row = 0; row < 20; row++) {
