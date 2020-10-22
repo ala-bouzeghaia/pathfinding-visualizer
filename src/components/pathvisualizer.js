@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Node from "./node/node";
 import { dijkstra, getNodesInShortestPathOrder } from "./algorithms/dijkstra";
+import { randomMaze } from "./mazes/randomMaze";
 import { useSelector, useDispatch } from "react-redux";
 import { clearedBoard } from "../actions/clearboard";
 import { noAlgo } from "../actions/visualizeAlgo";
 import { clearedPath } from "../actions/clearpath";
+import { NoMaze } from "../actions/mazes";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -74,10 +76,9 @@ const PathfindingVisualizer = () => {
 
   //-----------Clear Board Or Path-------------------------------------//
   const dispatch = useDispatch();
-
+  const isClearBoardPressed = useSelector((state) => state.clearBoard);
+  const isClearPathPressed = useSelector((state) => state.clearPath);
   const ClearPressed = () => {
-    const isClearBoardPressed = useSelector((state) => state.clearBoard);
-    const isClearPathPressed = useSelector((state) => state.clearPath);
     if (isClearBoardPressed) {
       setGrid(getInitialGrid());
       console.log("grid", grid);
@@ -162,8 +163,50 @@ const PathfindingVisualizer = () => {
       const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
       animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
     }
+    dispatch(noAlgo());
   };
   visualizeDijkstra();
+
+  //--------------Generate Maze---------------------//
+
+  const maze = useSelector((state) => state.maze);
+  const visualizeRandomMaze = () => {
+    if (maze === "random") {
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          if (!grid[row][col].isStart && !grid[row][col].isFinish) {
+            grid[row][col] = createNode(col, row);
+            document.getElementById(
+              `node-${grid[row][col].row}-${grid[row][col].col}`
+            ).className = "node ";
+          }
+        }
+      }
+      document.getElementById(
+        `node-${START_NODE_ROW}-${START_NODE_COL}`
+      ).className = "node node-start";
+      document.getElementById(
+        `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+      ).className = "node node-finish";
+
+      const randomGrid = randomMaze(grid);
+      setGrid(randomGrid);
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          if (grid[row][col].isWall) {
+            document.getElementById(
+              `node-${grid[row][col].row}-${grid[row][col].col}`
+            ).className = "node node-wall";
+          }
+        }
+      }
+    }
+
+    dispatch(NoMaze());
+  };
+  visualizeRandomMaze();
+
+  if (grid.length > 0) console.log("node grid", grid[0][0]);
 
   return (
     <div className="grid">
