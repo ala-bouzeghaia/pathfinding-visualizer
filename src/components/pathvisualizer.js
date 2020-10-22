@@ -210,7 +210,7 @@ const PathfindingVisualizer = () => {
   };
   visualizeRandomMaze();
 
-  if (grid.length > 0) console.log("node grid", grid[0][0]);
+  //if (grid.length > 0) console.log("node distance", grid[15][20]);
 
   return (
     <div className="grid">
@@ -223,6 +223,7 @@ const PathfindingVisualizer = () => {
                 <Node
                   key={nodeIdx}
                   col={col}
+                  row={row}
                   isFinish={isFinish}
                   isStart={isStart}
                   isWall={isWall}
@@ -230,7 +231,6 @@ const PathfindingVisualizer = () => {
                   onMouseDown={(row, col) => handleMouseDown(row, col)}
                   onMouseEnter={(row, col) => handleMouseEnter(row, col)}
                   onMouseUp={() => handleMouseUp()}
-                  row={row}
                 ></Node>
               );
             })}
