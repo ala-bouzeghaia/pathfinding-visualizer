@@ -1,7 +1,8 @@
-import VisualizeAlgoReducer from "./visualizeAlgo";
+import VisualizeAlgoReducer from "./algorithms";
 import clearBoardReducer from "./clearboard";
 import clearPathReducer from "./clearpath";
 import MazeReducer from "./mazes";
+import startVisualizeReducer from "./visualize";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
@@ -9,6 +10,7 @@ const allReducers = combineReducers({
   clearBoard: clearBoardReducer,
   clearPath: clearPathReducer,
   maze: MazeReducer,
+  startVisualize: startVisualizeReducer,
 });
 
 export default allReducers;
