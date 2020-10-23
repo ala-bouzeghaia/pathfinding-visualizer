@@ -76,6 +76,11 @@ const Navbar = () => {
               onClick={() => dispatch(startVisualizeAlgo())}
             >
               Visualize{" "}
+              {algo === "dijkstra"
+                ? "Dijkstra"
+                : algo === "a_star"
+                ? "A* Search"
+                : ""}
             </button>
           </li>
 
