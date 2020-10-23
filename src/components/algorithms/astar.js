@@ -22,7 +22,7 @@ export const astar = (grid, startNode, finishNode) => {
     for (let neighbor of neighbors) {
       // Already seen?
       if (!closedSet.includes(neighbor)) {
-        //tempG is the distance from strat to neighbor through current
+        //tempG is the distance from start to neighbor through current
         let tempG = current.distance + heuristic(neighbor, current);
         //let newPath = false;
         if (tempG < neighbor.distance) {
@@ -90,8 +90,4 @@ const getUnvisitedNeighbors = (node, grid) => {
   return neighbors.filter(
     (neighbor) => !neighbor.isVisited && !neighbor.isWall
   );
-};
-
-const reconstructPath = () => {
-  let path = [];
 };
