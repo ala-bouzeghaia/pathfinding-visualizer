@@ -1,4 +1,4 @@
-const VisualizeReducer = (state = false, action) => {
+const startVisualizeReducer = (state = false, action) => {
   switch (action.type) {
     case "START_ALGO":
       return true;
@@ -7,4 +7,4 @@ const VisualizeReducer = (state = false, action) => {
   }
 };
 
-export default VisualizeReducer;
+export default startVisualizeReducer;
