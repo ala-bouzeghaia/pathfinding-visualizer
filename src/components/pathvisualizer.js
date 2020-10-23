@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Node from "./node/node";
 import { dijkstra, getNodesInShortestPathOrder } from "./algorithms/dijkstra";
+import { astar } from "./algorithms/astar";
 import { randomMaze } from "./mazes/randomMaze";
 import { useSelector, useDispatch } from "react-redux";
 import { clearedBoard } from "../actions/clearboard";
