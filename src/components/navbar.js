@@ -13,11 +13,22 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
-      <Link to="/" className="navbar-brand">
-        Pathfinding Visualizer{" "}
-      </Link>
+      <div className="navbar-brand">
+        <Link to="/">Pathfinding Visualizer </Link>
+      </div>
+      {/* <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#NavbarMenu"
+        aria-controls="NavbarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="toggle-button navbar-toggler-icon"></span>
+      </button> */}
 
-      <div className="collapse navbar-collapse">
+      <div /* className="collapse navbar-collapse" id="NavbarMenu" */>
         <ul className="nav nav-pills">
           <li className="nav-item dropdown">
             <button
