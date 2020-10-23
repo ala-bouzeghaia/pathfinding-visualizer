@@ -6,3 +6,5 @@ const VisualizeReducer = (state = false, action) => {
       return state;
   }
 };
+
+export default VisualizeReducer;
