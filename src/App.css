@@ -53,6 +53,11 @@
 }
 .link-button:focus {
   text-decoration: none;
+  border-color: transparent;
+}
+.link-button:active {
+  outline: none;
+  border-color: transparent;
 }
 
 .visualize-button {
@@ -66,5 +71,11 @@
 }
 
 .grid {
-  margin: 30px 0 10px;
+  margin: 30px 50px 0px 20px;
+  width: 1250px;
+  height: 500px;
+}
+
+.row {
+  width: 100vw;
 }
