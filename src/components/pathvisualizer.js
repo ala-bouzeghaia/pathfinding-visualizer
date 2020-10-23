@@ -5,7 +5,7 @@ import { astar } from "./algorithms/astar";
 import { randomMaze } from "./mazes/randomMaze";
 import { useSelector, useDispatch } from "react-redux";
 import { clearedBoard } from "../actions/clearboard";
-import { noAlgo } from "../actions/visualizeAlgo";
+import { noAlgo } from "../actions/algorithms";
 import { clearedPath } from "../actions/clearpath";
 import { NoMaze } from "../actions/mazes";
 
@@ -79,6 +79,7 @@ const PathfindingVisualizer = () => {
   const dispatch = useDispatch();
   const isClearBoardPressed = useSelector((state) => state.clearBoard);
   const isClearPathPressed = useSelector((state) => state.clearPath);
+
   const ClearPressed = () => {
     if (isClearBoardPressed) {
       setGrid(getInitialGrid());
@@ -126,7 +127,7 @@ const PathfindingVisualizer = () => {
 
   ClearPressed();
 
-  //-----------Visualize Pathfinding Algorithms----------------//
+  //-----------Visualize Dijkstra's Algorithm----------------//
 
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
@@ -155,20 +156,86 @@ const PathfindingVisualizer = () => {
   };
 
   const algo = useSelector((state) => state.visualizeAlgo);
+  const startVisualize = useSelector((state) => state.startVisualize);
 
   const visualizeDijkstra = () => {
-    if (algo === "dijkstra") {
+    if (startVisualize && algo === "dijkstra") {
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          if (!grid[row][col].isWall) {
+            grid[row][col] = createNode(col, row);
+            document.getElementById(
+              `node-${grid[row][col].row}-${grid[row][col].col}`
+            ).className = "node ";
+          }
+        }
+      }
+      document.getElementById(
+        `node-${START_NODE_ROW}-${START_NODE_COL}`
+      ).className = "node node-start";
+
+      document.getElementById(
+        `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+      ).className = "node node-finish";
       const startNode = grid[START_NODE_ROW][START_NODE_COL];
       const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
       const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
       const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
       animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
     }
-    dispatch(noAlgo());
+    //dispatch(noAlgo());
   };
   visualizeDijkstra();
 
-  //--------------Generate Maze---------------------//
+  //--------------Visualize A* Search Algorithm----------------//
+
+  const animateAstar = (visitedNodesInOrder, nodesInShortestPathOrder) => {
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+      if (i === visitedNodesInOrder.length) {
+        setTimeout(() => {
+          animateShortestPath(nodesInShortestPathOrder);
+        }, 10 * i);
+        return;
+      }
+      setTimeout(() => {
+        const node = visitedNodesInOrder[i];
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node node-visited";
+      }, 10 * i);
+    }
+  };
+
+  const visualizeAstar = () => {
+    if (startVisualize && algo === "a_star") {
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          if (!grid[row][col].isWall) {
+            grid[row][col] = createNode(col, row);
+            document.getElementById(
+              `node-${grid[row][col].row}-${grid[row][col].col}`
+            ).className = "node ";
+          }
+        }
+      }
+      document.getElementById(
+        `node-${START_NODE_ROW}-${START_NODE_COL}`
+      ).className = "node node-start";
+
+      document.getElementById(
+        `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+      ).className = "node node-finish";
+      const startNode = grid[START_NODE_ROW][START_NODE_COL];
+      const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+      const visitedNodesInOrder = astar(grid, startNode, finishNode);
+      const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+      animateAstar(visitedNodesInOrder, nodesInShortestPathOrder);
+    }
+    //dispatch(noAlgo());
+  };
+
+  visualizeAstar();
+
+  //------------------------Generate Maze----------------------//
   const resetGrid = (grid) => {
     for (let row = 0; row < 20; row++) {
       for (let col = 0; col < 50; col++) {
