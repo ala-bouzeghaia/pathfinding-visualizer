@@ -3,7 +3,7 @@ const startVisualizeReducer = (state = false, action) => {
     case "START_ALGO":
       return true;
     default:
-      return state;
+      return false;
   }
 };
 
