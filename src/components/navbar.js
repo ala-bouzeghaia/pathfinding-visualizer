@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { dijkstraAlgo } from "../actions/visualizeAlgo";
+import { useDispatch, useSelector } from "react-redux";
+import { dijkstraAlgo, a_starAlgo } from "../actions/algorithms";
 import { clearBoard } from "../actions/clearboard";
 import { clearPath } from "../actions/clearpath";
 import { RandomMaze, RecursiveDivision } from "../actions/mazes";
+import { startVisualizeAlgo } from "../actions/visualize";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const algo = useSelector((state) => state.visualizeAlgo);
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -28,8 +30,18 @@ const Navbar = () => {
             </button>
 
             <div className="dropdown-menu">
-              <button className="dropdown-item">Dijkstra's Algorithm</button>
-              <button className="dropdown-item">A* Search</button>
+              <button
+                className="dropdown-item"
+                onClick={() => dispatch(dijkstraAlgo())}
+              >
+                Dijkstra's Algorithm
+              </button>
+              <button
+                className="dropdown-item"
+                onClick={() => dispatch(a_starAlgo())}
+              >
+                A* Search
+              </button>
             </div>
           </li>
 
@@ -61,7 +73,7 @@ const Navbar = () => {
           <li className="nav-item">
             <button
               className="visualize-button nav-link active"
-              onClick={() => dispatch(dijkstraAlgo())}
+              onClick={() => dispatch(startVisualizeAlgo())}
             >
               Visualize{" "}
             </button>
