@@ -286,7 +286,9 @@ const PathfindingVisualizer = () => {
       //setGrid(resetGrid(grid));
       resetGrid();
       //const recursiveMaze = recursiveDivision(grid);
+      console.log("grid", grid[0]);
       setGrid(recursiveDivision(grid));
+      console.log("new grid", grid[0]);
       for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 50; col++) {
           if (grid[row][col].isWall) {
