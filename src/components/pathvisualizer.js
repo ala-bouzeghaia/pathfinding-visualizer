@@ -8,6 +8,7 @@ import { clearedBoard } from "../actions/clearboard";
 import { noAlgo } from "../actions/algorithms";
 import { clearedPath } from "../actions/clearpath";
 import { NoMaze } from "../actions/mazes";
+import { recursiveDivision } from "./mazes/recursiveDivision";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -83,7 +84,7 @@ const PathfindingVisualizer = () => {
   const ClearPressed = () => {
     if (isClearBoardPressed) {
       setGrid(getInitialGrid());
-      console.log("grid", grid);
+      //console.log("grid", grid);
       for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 50; col++) {
           //console.log("grid node", grid[row][col]);
@@ -236,7 +237,9 @@ const PathfindingVisualizer = () => {
   visualizeAstar();
 
   //------------------------Generate Maze----------------------//
-  const resetGrid = (grid) => {
+  const resetGrid = () => {
+    //const newGrid = grid.slice();
+    setGrid(getInitialGrid());
     for (let row = 0; row < 20; row++) {
       for (let col = 0; col < 50; col++) {
         if (!grid[row][col].isStart && !grid[row][col].isFinish) {
@@ -253,16 +256,17 @@ const PathfindingVisualizer = () => {
     document.getElementById(
       `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
     ).className = "node node-finish";
+    //return newGrid;
   };
 
   const maze = useSelector((state) => state.maze);
 
   const visualizeRandomMaze = () => {
     if (maze === "random") {
-      resetGrid(grid);
-
-      const randomGrid = randomMaze(grid);
-      setGrid(randomGrid);
+      //setGrid(resetGrid(grid));
+      resetGrid();
+      //const randomGrid = randomMaze(grid);
+      setGrid(randomMaze(grid));
       for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 50; col++) {
           if (grid[row][col].isWall) {
@@ -272,11 +276,37 @@ const PathfindingVisualizer = () => {
           }
         }
       }
+      dispatch(NoMaze());
     }
-
-    dispatch(NoMaze());
   };
   visualizeRandomMaze();
+
+  const visualizeRecursiveDivision = () => {
+    if (maze === "recursive") {
+      //setGrid(resetGrid(grid));
+      resetGrid();
+      //const recursiveMaze = recursiveDivision(grid);
+      setGrid(recursiveDivision(grid));
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 50; col++) {
+          if (grid[row][col].isWall) {
+            document.getElementById(
+              `node-${grid[row][col].row}-${grid[row][col].col}`
+            ).className = "node node-wall";
+            /* setTimeout(() => {
+              setTimeout(() => {
+                document.getElementById(
+                  `node-${grid[row][col].row}-${grid[row][col].col}`
+                ).className = "node node-wall";
+              }, 20 * col);
+            }, 20 * row); */
+          }
+        }
+      }
+      dispatch(NoMaze());
+    }
+  };
+  visualizeRecursiveDivision();
 
   //if (grid.length > 0) console.log("node distance", grid[15][20]);
 
@@ -284,7 +314,7 @@ const PathfindingVisualizer = () => {
     <div className="grid">
       {grid.map((row, rowIdx) => {
         return (
-          <div key={rowIdx} className="row" /*style={{ margin: -4 }} */>
+          <div key={rowIdx} /*className="row"*/ style={{ margin: -4 }}>
             {row.map((node, nodeIdx) => {
               const { row, col, isFinish, isStart, isWall } = node;
               return (
