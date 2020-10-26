@@ -70,9 +70,10 @@
 }
 
 .grid {
-  margin: 30px 50px 0px 20px;
+  margin: 30px 50px 20px 25px;
+  width: 95vw;
 }
 
-/* .row {
-  width: 100vw;
-} */
+.row {
+  height: 5vh;
+}
