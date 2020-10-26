@@ -42,13 +42,13 @@ const Navbar = () => {
 
             <div className="dropdown-menu">
               <button
-                className="dropdown-item"
+                className="link-button dropdown-item"
                 onClick={() => dispatch(dijkstraAlgo())}
               >
                 Dijkstra's Algorithm
               </button>
               <button
-                className="dropdown-item"
+                className="link-button dropdown-item"
                 onClick={() => dispatch(a_starAlgo())}
               >
                 A* Search
@@ -67,13 +67,13 @@ const Navbar = () => {
             </button>
             <div className="dropdown-menu">
               <button
-                className="dropdown-item"
+                className=" link-button dropdown-item"
                 onClick={() => dispatch(RandomMaze())}
               >
                 Random Maze
               </button>
               <button
-                className="dropdown-item"
+                className="link-button dropdown-item"
                 onClick={() => dispatch(RecursiveDivision())}
               >
                 Recursive Division
