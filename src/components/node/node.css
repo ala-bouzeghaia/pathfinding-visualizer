@@ -1,6 +1,6 @@
 .node {
-  width: 25px;
-  height: 25px;
+  width: 2%;
+  height: 100%;
   outline: 1px solid rgb(175, 216, 248);
   display: inline-block;
   margin: 0;
@@ -8,11 +8,19 @@
 }
 
 .node-finish {
-  background-color: red;
+  /*  background-color: red; */
+  background-image: url(circle.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .node-start {
-  background-color: green;
+  /* background-color: #420863; */
+  background-image: url(square.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .node-visited {
