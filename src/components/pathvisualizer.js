@@ -316,7 +316,7 @@ const PathfindingVisualizer = () => {
     <div className="grid">
       {grid.map((row, rowIdx) => {
         return (
-          <div key={rowIdx} /*className="row"*/ style={{ margin: -4 }}>
+          <div key={rowIdx} className="row" /* style={{ margin: -4 }} */>
             {row.map((node, nodeIdx) => {
               const { row, col, isFinish, isStart, isWall } = node;
               return (
