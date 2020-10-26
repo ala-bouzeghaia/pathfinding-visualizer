@@ -292,16 +292,16 @@ const PathfindingVisualizer = () => {
       for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 50; col++) {
           if (grid[row][col].isWall) {
-            document.getElementById(
+            /* document.getElementById(
               `node-${grid[row][col].row}-${grid[row][col].col}`
-            ).className = "node node-wall";
-            /* setTimeout(() => {
+            ).className = "node node-wall"; */
+            setTimeout(() => {
               setTimeout(() => {
                 document.getElementById(
                   `node-${grid[row][col].row}-${grid[row][col].col}`
                 ).className = "node node-wall";
               }, 20 * col);
-            }, 20 * row); */
+            }, 20 * row);
           }
         }
       }
