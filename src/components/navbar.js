@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { dijkstraAlgo, a_starAlgo } from "../actions/algorithms";
 import { clearBoard } from "../actions/clearboard";
@@ -13,8 +12,12 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
-      <div className="navbar-brand">
-        <Link to="/">Pathfinding Visualizer </Link>
+      <div
+        className="navbar-brand link-button" /* style={{ textDecoration: "none" }} */
+      >
+        <a href="/" className="link-button">
+          Pathfinding Visualizer{" "}
+        </a>
       </div>
       {/* <button
         className="navbar-toggler"
