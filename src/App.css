@@ -46,14 +46,17 @@
   margin: 0;
   padding: 10px 20px 10px 20px;
   color: #2ca3c4;
+  outline: none;
 }
 
 .link-button:hover {
   color: #1958a0;
+  text-decoration: none;
 }
 .link-button:focus {
   text-decoration: none;
   border-color: transparent;
+  outline: none;
 }
 .link-button:active {
   outline: none;
@@ -67,6 +70,10 @@
   display: inline;
   margin: 0;
   padding: 10px 20px 10px 20px;
+  outline: none;
+}
+.visualize-button:focus {
+  outline: none;
 }
 
 .grid {
