@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import "./App.css";
@@ -9,10 +8,8 @@ import PathfindingVisualizer from "./components/pathvisualizer";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <PathfindingVisualizer />
-      </Router>
+      <Navbar />
+      <PathfindingVisualizer />
     </div>
   );
 }
