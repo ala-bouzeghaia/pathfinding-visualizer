@@ -15,7 +15,10 @@ const Navbar = () => {
       <div
         className="navbar-brand link-button" /* style={{ textDecoration: "none" }} */
       >
-        <a href="" className="link-button">
+        <a
+          href="https://ala-bouzeghaia.github.io/pathfinding-visualizer/"
+          className="link-button"
+        >
           Pathfinding Visualizer{" "}
         </a>
       </div>
