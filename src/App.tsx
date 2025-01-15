@@ -4,7 +4,7 @@ import { Grid } from "./components/Grid";
 import { NodeType } from "./types/node.type";
 
 import { NUMBER_OF_COLS, NUMBER_OF_ROWS, SQUARE_SIZE } from "./utils/const";
-import { getInitialGrid } from "./utils/grid";
+import { getInitialGrid, resetGrid } from "./utils/grid";
 import { getRandomMaze } from "./utils/maze";
 
 export function App() {
@@ -44,6 +44,9 @@ export function App() {
       <main className='flex mx-auto w-full max-w-1000px h-[92vh]'>
         <aside className='w-15% flex flex-col gap-4'>
           <h1 className='text-2xl font-semibold'>Actions</h1>
+          <button onClick={() => setGrid((grid) => resetGrid(grid))}>
+            Clear Grid
+          </button>
           <button onClick={() => setGrid((grid) => getRandomMaze(grid))}>
             Create Random Maze
           </button>

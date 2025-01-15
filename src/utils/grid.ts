@@ -30,3 +30,7 @@ export function getInitialGrid(numRows: number, numCols: number): NodeType[][] {
   }
   return grid;
 }
+
+export function resetGrid(grid: NodeType[][]): NodeType[][] {
+  return grid.map((row) => row.map((node) => ({ ...node, isWall: false })));
+}
