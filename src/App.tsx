@@ -5,6 +5,7 @@ import { NodeType } from "./types/node.type";
 
 import { NUMBER_OF_COLS, NUMBER_OF_ROWS, SQUARE_SIZE } from "./utils/const";
 import { getInitialGrid } from "./utils/grid";
+import { getRandomMaze } from "./utils/maze";
 
 export function App() {
   const [algo, setAlgo] = useState("");
@@ -43,7 +44,9 @@ export function App() {
       <main className='flex mx-auto w-full max-w-1000px h-[92vh]'>
         <aside className='w-15% flex flex-col gap-4'>
           <h1 className='text-2xl font-semibold'>Actions</h1>
-  return <div>Hello</div>;
+          <button onClick={() => setGrid((grid) => getRandomMaze(grid))}>
+            Create Random Maze
+          </button>
         </aside>
         <Grid gridRef={gridRef} grid={grid} />
       </main>
