@@ -5,7 +5,7 @@ import { NodeType } from "./types/node.type";
 
 import { NUMBER_OF_COLS, NUMBER_OF_ROWS, SQUARE_SIZE } from "./utils/const";
 import { getInitialGrid, resetGrid } from "./utils/grid";
-import { getRandomMaze } from "./utils/maze";
+import { getRandomMaze, getRecursiveDivisionMaze } from "./utils/maze";
 
 export function App() {
   const [algo, setAlgo] = useState("");
@@ -49,6 +49,10 @@ export function App() {
           </button>
           <button onClick={() => setGrid((grid) => getRandomMaze(grid))}>
             Create Random Maze
+          </button>
+          <button
+            onClick={() => setGrid((grid) => getRecursiveDivisionMaze(grid))}>
+            Create Recursive Maze
           </button>
         </aside>
         <Grid gridRef={gridRef} grid={grid} />
