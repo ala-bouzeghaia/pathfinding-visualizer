@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid background -->
+  <rect width="64" height="64" fill="#F3F4F6"/>
+  
+  <!-- Grid squares (border color changed to blue-500) -->
+  <path d="M16 0V64M32 0V64M48 0V64M0 16H64M0 32H64M0 48H64" stroke="rgb(59, 130, 246)" stroke-width="2"/>
+  
+  <!-- Target (start) -->
+  <circle cx="8" cy="24" r="6" stroke="#A855F7" stroke-width="3" fill="none"/>
+  <circle cx="8" cy="24" r="2" fill="#A855F7"/>
+  
+  <!-- "X" (end) -->
+  <path d="M52 52L60 60M60 52L52 60" stroke="#A855F7" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Path -->
+  <path d="M8 24H24V40H40V56H56" stroke="#3B82F6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
