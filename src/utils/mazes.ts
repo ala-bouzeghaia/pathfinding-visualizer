@@ -1,4 +1,4 @@
-import { NodeType } from "../types/node.type";
+import type { NodeType } from "../types/node.type";
 
 /**
  * Generates a random maze by converting some nodes into walls.
@@ -13,7 +13,13 @@ import { NodeType } from "../types/node.type";
  */
 export function getRandomMaze(grid: NodeType[][]): NodeType[][] {
   const resetGrid = grid.map((row) =>
-    row.map((node) => ({ ...node, isWall: false }))
+    row.map((node) => ({
+      ...node,
+      distance: Infinity,
+      isVisited: false,
+      isWall: false,
+      previousNode: null,
+    }))
   );
   const newGrid = resetGrid.map((row) => {
     return row.map((node) => {
@@ -34,7 +40,13 @@ export function getRandomMaze(grid: NodeType[][]): NodeType[][] {
  */
 export function getRecursiveDivisionMaze(grid: NodeType[][]): NodeType[][] {
   const newGrid = grid.map((row) =>
-    row.map((node) => ({ ...node, isWall: false }))
+    row.map((node) => ({
+      ...node,
+      distance: Infinity,
+      isVisited: false,
+      isWall: false,
+      previousNode: null,
+    }))
   );
   const height = grid.length;
   const width = grid[0].length;
