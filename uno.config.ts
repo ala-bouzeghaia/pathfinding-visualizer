@@ -22,39 +22,66 @@ export default defineConfig({
   theme: {
     animation: {
       keyframes: {
-        wallAnimation:
-          "{0% { transform: scale(0.3); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } 0%, 50%, 100% {background-color: rgb(12, 53, 71); outline: 1px solid rgb(12, 53, 71); }}",
-        resetWallAnimation:
-          "{0% { transform: scale(1); } 25% { transform: scale(0.5); } 100% { transform: scale(0); } 0%, 25%, 100% {background-color: rgb(12, 53, 71); outline: 1px solid rgb(12, 53, 71); }}",
+        wallAnimation: `{
+          0% { transform: scale(0.3); } 
+          50% { transform: scale(1.1); } 
+          100% { transform: scale(1); background-color: rgb(12, 53, 71); border: 1px solid rgb(12, 53, 71); } 
+          }`,
+        resetWallAnimation: `{
+          0% { transform: scale(1); background-color: rgb(12, 53, 71); border: 1px solid rgb(12, 53, 71); } 
+          25% { transform: scale(0.5); } 
+          100% { transform: scale(0.3); background-color: white; border: 1px solid rgb(59, 130, 246); } 
+          0%, 25%, 100% {background-color: rgb(12, 53, 71); border: 1px solid rgb(12, 53, 71); }
+          }`,
+        visitedAnimation: `{
+          0% { transform: scale(0.3); background-color: rgba(0, 0, 66, 0.75); border-radius: 100%; } 
+          50% { background-color: rgba(17, 104, 217, 0.75); }
+          75% { transform: scale(1.2); background-color: rgba(0, 217, 159, 0.75); }
+          100% { transform: scale(1); background-color: rgba(0, 190, 218, 0.75); outline: 1px solid white;}
+          }`,
+        pathAnimation: `{
+          0% { transform: scale(0.6); background-color: rgb(255, 254, 106); }
+          50% { transform: scale(1.2); background-color: rgb(255, 254, 106); }
+          100% { transform: scale(1); background-color: rgb(255, 254, 106); border: 1px solid white;}
+          }`,
       },
-
       durations: {
         wallAnimation: "0.3s",
-        resetWallAnimation: "0.2s",
+        resetWallAnimation: "0.5s",
+        visitedAnimation: "1.5s",
+        pathAnimation: "1.5s",
       },
-      timingFunction: {
-        wallAnimation: "ease-out",
+      timingFns: {
+        wallAnimation: "ease-in-out",
         resetWallAnimation: "ease-out",
+        visitedAnimation: "ease-out",
+        pathAnimation: "ease-out",
       },
-      delay: {
-        wallAnimation: "0s",
-        resetWallAnimation: "0s",
-      },
-      iterationCount: {
-        wallAnimation: "1",
-        resetWallAnimation: "1",
-      },
-      direction: {
-        wallAnimation: "alternate",
-        resetWallAnimation: "alternate",
-      },
-      fillMode: {
-        wallAnimation: "forwards",
-        resetWallAnimation: "forwards",
-      },
-      playState: {
-        wallAnimation: "running",
-        resetWallAnimation: "running",
+      properties: {
+        wallAnimation: {
+          "animation-direction": "alternate",
+          "animation-iteration-count": 1,
+          "animation-fill-mode": "forwards",
+          "animation-play-state": "running",
+        },
+        resetWallAnimation: {
+          "animation-direction": "alternate",
+          "animation-iteration-count": 1,
+          "animation-fill-mode": "forwards",
+          "animation-play-state": "running",
+        },
+        visitedAnimation: {
+          "animation-direction": "alternate",
+          "animation-iteration-count": 1,
+          "animation-fill-mode": "forwards",
+          "animation-play-state": "running",
+        },
+        pathAnimation: {
+          "animation-direction": "alternate",
+          "animation-iteration-count": 1,
+          "animation-fill-mode": "forwards",
+          "animation-play-state": "running",
+        },
       },
     },
   },
