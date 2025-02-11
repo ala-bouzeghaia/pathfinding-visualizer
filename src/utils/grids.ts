@@ -1,10 +1,10 @@
-import { NodeType } from "../types/node.type";
+import type { NodeType } from "../types/node.type";
 import {
   START_NODE_COL,
   START_NODE_ROW,
   FINISH_NODE_COL,
   FINISH_NODE_ROW,
-} from "./const";
+} from "./consts";
 
 function createNode(row: number, col: number): NodeType {
   return {
@@ -32,5 +32,24 @@ export function getInitialGrid(numRows: number, numCols: number): NodeType[][] {
 }
 
 export function resetGrid(grid: NodeType[][]): NodeType[][] {
-  return grid.map((row) => row.map((node) => ({ ...node, isWall: false })));
+  return grid.map((row) =>
+    row.map((node) => ({
+      ...node,
+      distance: Infinity,
+      isVisited: false,
+      isWall: false,
+      previousNode: null,
+    }))
+  );
+}
+
+export function clearPath(grid: NodeType[][]): NodeType[][] {
+  return grid.map((row) =>
+    row.map((node) => ({
+      ...node,
+      distance: Infinity,
+      isVisited: false,
+      previousNode: null,
+    }))
+  );
 }
