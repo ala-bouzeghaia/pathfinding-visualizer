@@ -17,7 +17,7 @@ A web-based application that visualizes various pathfinding algorithms in action
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/pathfinding-visualizer.git
+git clone https://github.com/ala-bouzeghaia/pathfinding-visualizer.git
 ```
 
 2. Navigate to the project directory:
