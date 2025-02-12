@@ -46,6 +46,8 @@ export function Grid(props: Props) {
     }
 
     if (action === "createRandomMaze" || action === "createRecursiveMaze") {
+      setAnimatedVisitedNodes(new Set());
+      setAnimatedShortestPathNodes(new Set());
       setAnimatedWallNodes(
         new Set(
           grid
@@ -60,6 +62,8 @@ export function Grid(props: Props) {
   useEffect(() => {
     timeouts.current = [];
     if (algo.name.length > 0) {
+      setAnimatedVisitedNodes(new Set());
+      setAnimatedShortestPathNodes(new Set());
       for (let i = 0; i < visitedNodesInOrder.length; i++) {
         if (!algo.isRunning) break; // Stop if algo.isRunning is false
 
